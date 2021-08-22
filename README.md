@@ -1,11 +1,5 @@
 # Anagrams Kata
 
-This is the very basic setup for the "Anagrams" coding kata. **C**, **C++14**, **C#**, **Go**, **Java** and **JS**
-
-> A code kata is an exercise in programming which helps a programmer hone their skills through practice and repetition.
-
-(wikipedia)
-
 The instructions are kept short on purpose. The participants should come up with some questions regarding the requirements on their own and the facilitator should act as product owner who can answer them. Key with this kata when doing tdd is to find all the baby steps so you never reach a point where you have to write a huge block of code without having tests to back it up. In addition, readability of the code and performance can be tricky.
 
 ## Instructions
@@ -43,3 +37,13 @@ Is it possible to find multiple words anagrams?
 | --- | --- |
 | schoolmaster | the classroom |
 | astronomer | moon starer |
+
+## Constraint
+
+1. Setup a git repository (or use another SCM that supports resets)
+2. Setup a timer for 2 minutes interval when you start
+3. Write exactly one test
+	- If the timer rings and the test is red then revert and start over
+	- If you finish your test earlier: no problem, reset the timer and continue
+4. Restart timer
+5. Go to 3.
