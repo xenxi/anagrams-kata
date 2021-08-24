@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AnagramsKataDotnet/.vs/AnagramsKataDotnet
+/AnagramsKataDotnet/AnagramsKata/obj
+/AnagramsKataDotnet/AnagramsKata.Tests/obj
+/AnagramsKataDotnet/AnagramsKata.Tests/bin/Debug/netcoreapp3.1
+/AnagramsKataDotnet/AnagramsKata/bin/Debug/netcoreapp3.1
