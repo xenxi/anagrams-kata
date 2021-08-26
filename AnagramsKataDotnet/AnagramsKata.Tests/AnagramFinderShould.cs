@@ -7,14 +7,14 @@ namespace AnagramsKata.Tests
     public class AnagramFinderShould
     {
         [Test]
-        public void return_false_for_empty_input_string()
+        public void return_empty_list_of_words_for_empty_input_string()
         {
-            var anagramFinder = new AnagramFinder();
+            var anagramSearcher = new AnagramSearcher();
             var aGivenEmptyInputString = string.Empty;
 
-            var isAnagram = anagramFinder.IsAnagram(aGivenEmptyInputString);
+            var anagrams = anagramSearcher.Search(aGivenEmptyInputString);
 
-            isAnagram.Should().Be(false);
+            anagrams.Should().BeEmpty();
         }
     }
 
