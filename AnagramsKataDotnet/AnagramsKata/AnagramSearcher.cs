@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace AnagramsKata
 {
@@ -6,7 +7,7 @@ namespace AnagramsKata
     {
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
-            throw new System.NotImplementedException();
+            return new Collection<string>();
         }
     }
 }
