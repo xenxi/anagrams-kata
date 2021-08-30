@@ -16,6 +16,15 @@ namespace AnagramsKata.Tests
 
             anagrams.Should().BeEmpty();
         }
+        [Test]
+        public void return_empty_list_of_words_for_null_input()
+        {
+            var anagramSearcher = new AnagramSearcher();
+
+            var anagrams = anagramSearcher.Search(null);
+
+            anagrams.Should().BeEmpty();
+        }
     }
 
 }
