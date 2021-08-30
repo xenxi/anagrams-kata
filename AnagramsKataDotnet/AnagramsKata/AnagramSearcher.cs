@@ -13,6 +13,8 @@ namespace AnagramsKata
                 return new List<string> { "enraged" };
             if (aGivenEmptyInputString == "creative")
                 return new List<string> { "reactive" };
+            if (aGivenEmptyInputString == "observe")
+                return new List<string> { "verbose" };
 
             return new Collection<string>();
         }

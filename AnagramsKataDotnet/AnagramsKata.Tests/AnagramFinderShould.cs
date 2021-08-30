@@ -47,6 +47,8 @@ namespace AnagramsKata.Tests
         [Test]
         [TestCase("below", "elbow")]
         [TestCase("angered", "enraged")]
+        [TestCase("creative", "reactive")]
+        [TestCase("observe", "verbose")]
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
             var anagrams = _anagramSearcher.Search(aGivenWord);
