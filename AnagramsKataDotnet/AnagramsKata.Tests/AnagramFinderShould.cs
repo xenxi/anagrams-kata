@@ -25,6 +25,19 @@ namespace AnagramsKata.Tests
 
             anagrams.Should().BeEmpty();
         }
+
+        [Test]
+        [TestCase("a")]
+        [TestCase("B")]
+        [TestCase("c")]
+        public void return_empty_list_of_words_for_string_with_only_one_character(string aGivenEmptyInputString)
+        {
+            var anagramSearcher = new AnagramSearcher();
+
+            var anagrams = anagramSearcher.Search(aGivenEmptyInputString);
+
+            anagrams.Should().BeEmpty();
+        }
     }
 
 }
