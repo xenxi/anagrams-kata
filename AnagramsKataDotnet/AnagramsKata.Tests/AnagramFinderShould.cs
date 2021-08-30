@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 
 namespace AnagramsKata.Tests
@@ -37,6 +38,15 @@ namespace AnagramsKata.Tests
             var anagrams = anagramSearcher.Search(aGivenEmptyInputString);
 
             anagrams.Should().BeEmpty();
+        }
+
+        [Test]
+        [TestCase("below","elbow")]
+        public void return_one_anagram(string aGivenWord, string expectedAnagram)
+        {
+            var anagrams = new AnagramSearcher().Search(aGivenWord);
+
+            anagrams.Should().ContainSingle(expectedAnagram);
         }
     }
 
