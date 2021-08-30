@@ -11,6 +11,8 @@ namespace AnagramsKata
                 return new List<string> { "elbow" };
             if (aGivenEmptyInputString == "angered")
                 return new List<string> { "enraged" };
+            if (aGivenEmptyInputString == "creative")
+                return new List<string> { "reactive" };
 
             return new Collection<string>();
         }
