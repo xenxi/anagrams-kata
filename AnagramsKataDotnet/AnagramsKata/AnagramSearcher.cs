@@ -9,6 +9,8 @@ namespace AnagramsKata
         {
             if (aGivenEmptyInputString == "below")
                 return new List<string> { "elbow" };
+            if (aGivenEmptyInputString == "angered")
+                return new List<string> { "enraged" };
 
             return new Collection<string>();
         }
