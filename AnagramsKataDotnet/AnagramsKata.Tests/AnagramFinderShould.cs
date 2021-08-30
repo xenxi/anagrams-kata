@@ -7,22 +7,28 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class AnagramFinderShould
     {
+        private AnagramSearcher _anagramSearcher;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _anagramSearcher = new AnagramSearcher();
+        }
+
         [Test]
         public void return_empty_list_of_words_for_empty_input_string()
         {
-            var anagramSearcher = new AnagramSearcher();
             var aGivenEmptyInputString = string.Empty;
 
-            var anagrams = anagramSearcher.Search(aGivenEmptyInputString);
+            var anagrams = _anagramSearcher.Search(aGivenEmptyInputString);
 
             anagrams.Should().BeEmpty();
         }
+
         [Test]
         public void return_empty_list_of_words_for_null_input()
         {
-            var anagramSearcher = new AnagramSearcher();
-
-            var anagrams = anagramSearcher.Search(null);
+            var anagrams = _anagramSearcher.Search(null);
 
             anagrams.Should().BeEmpty();
         }
@@ -33,21 +39,18 @@ namespace AnagramsKata.Tests
         [TestCase("c")]
         public void return_empty_list_of_words_for_string_with_only_one_character(string aGivenEmptyInputString)
         {
-            var anagramSearcher = new AnagramSearcher();
-
-            var anagrams = anagramSearcher.Search(aGivenEmptyInputString);
+            var anagrams = _anagramSearcher.Search(aGivenEmptyInputString);
 
             anagrams.Should().BeEmpty();
         }
 
         [Test]
-        [TestCase("below","elbow")]
+        [TestCase("below", "elbow")]
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
-            var anagrams = new AnagramSearcher().Search(aGivenWord);
+            var anagrams = _anagramSearcher.Search(aGivenWord);
 
             anagrams.Should().ContainSingle(expectedAnagram);
         }
     }
-
 }
