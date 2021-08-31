@@ -18,7 +18,7 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(Value))
                 return new Collection<string>();
 
-            return GetCombinations(Value).Where(x => x.Length == Value.Length).ToList();
+            return GetCombinations(Value).Where(x => x.Length == Value.Length).Distinct().ToList();
         }
 
         private static IEnumerable<string> GetCombinations(IEnumerable<char> items)

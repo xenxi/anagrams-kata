@@ -27,8 +27,15 @@ namespace AnagramsKata.Tests
 
             var combinations = word.GetCombinations();
 
-            var expectedTotalAnagrams = Factorial(aGivenString.Length);
+            var expectedTotalAnagrams = VariationsWithoutRepetition(aGivenString);
             combinations.Count().Should().Be(expectedTotalAnagrams);
+        }
+
+        private int VariationsWithoutRepetition(string aGivenString)
+        {
+            var length = aGivenString.Length - aGivenString.GroupBy(x => x).Count(x => x.Count() == 1);
+            var expectedTotalAnagrams = Factorial(aGivenString.Length) / Factorial(length);
+            return expectedTotalAnagrams;
         }
 
         [Test]
