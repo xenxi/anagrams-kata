@@ -20,8 +20,9 @@ namespace AnagramsKata.Tests
             anagrams.Should().BeEmpty();
         }
 
-        [Test]
+        [TestCase("ab")]
         [TestCase("below")]
+        [TestCase("angered")]
         public void return_a_list_with_lengh_equal_to_the_factorial_of_the_characters_in_the_word(string aGivenString)
         {
             var word = new Word(aGivenString);
