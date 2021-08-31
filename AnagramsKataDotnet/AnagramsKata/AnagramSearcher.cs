@@ -7,13 +7,18 @@ namespace AnagramsKata
     {
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
-            if (aGivenEmptyInputString == "below")
+            return GetAllAnagrams(new Word(aGivenEmptyInputString));
+        }
+
+        private static ICollection<string> GetAllAnagrams(Word word)
+        {
+            if (word.Value == "below")
                 return new List<string> { "elbow" };
-            if (aGivenEmptyInputString == "angered")
+            if (word.Value == "angered")
                 return new List<string> { "enraged" };
-            if (aGivenEmptyInputString == "creative")
+            if (word.Value == "creative")
                 return new List<string> { "reactive" };
-            if (aGivenEmptyInputString == "observe")
+            if (word.Value == "observe")
                 return new List<string> { "verbose" };
 
             return new Collection<string>();
