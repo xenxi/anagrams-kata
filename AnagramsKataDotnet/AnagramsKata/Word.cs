@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +12,7 @@ namespace AnagramsKata
 
         public string Value { get; }
 
-        public IEnumerable<string> GetConvinations()
+        public IEnumerable<string> GetCombinations()
         {
             if (string.IsNullOrWhiteSpace(Value))
                 return Enumerable.Empty<string>();
@@ -30,15 +29,11 @@ namespace AnagramsKata
                 var newCombinations = new List<string>();
 
                 foreach (var combination in combinations)
-                {
                     for (var i = 0; i <= combination.Length; i++)
-                    {
                         newCombinations.Add(
                             combination.Substring(0, i) +
                             item +
                             combination.Substring(i));
-                    }
-                }
 
                 combinations.AddRange(newCombinations);
             }

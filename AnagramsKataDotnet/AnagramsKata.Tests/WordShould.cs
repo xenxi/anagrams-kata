@@ -14,33 +14,33 @@ namespace AnagramsKata.Tests
             var aGivenEmptyInputString = string.Empty;
             var word = new Word(aGivenEmptyInputString);
 
-            var anagrams = word.GetConvinations();
+            var combinations = word.GetCombinations();
 
-            anagrams.Should().BeEmpty();
+            combinations.Should().BeEmpty();
         }
 
         [TestCase("ab")]
         [TestCase("below")]
         [TestCase("angered")]
-        public void return_a_list_with_lengh_equal_to_the_factorial_of_the_characters_in_the_word(string aGivenString)
+        public void return_a_list_with_length_equal_to_the_factorial_of_the_characters_in_the_word(string aGivenString)
         {
             var word = new Word(aGivenString);
 
-            var convinations = word.GetConvinations();
+            var combinations = word.GetCombinations();
 
             var expectedTotalAnagrams = Factorial(aGivenString.Length);
-            convinations.Count().Should().Be(expectedTotalAnagrams);
+            combinations.Count().Should().Be(expectedTotalAnagrams);
         }
 
         [Test]
-        public void return_all_convinations()
+        public void return_all_combinations()
         {
             var aGivenWord = new Word("abc");
 
-            var convinations = aGivenWord.GetConvinations();
+            var combinations = aGivenWord.GetCombinations();
 
-            var expectedConvinations = new List<string> { "abc", "acb", "cba", "bac", "bca", "cab" };
-            convinations.Should().BeEquivalentTo(expectedConvinations);
+            var expectedCombinations = new List<string> { "abc", "acb", "cba", "bac", "bca", "cab" };
+            combinations.Should().BeEquivalentTo(expectedCombinations);
         }
 
         private int Factorial(int number)
