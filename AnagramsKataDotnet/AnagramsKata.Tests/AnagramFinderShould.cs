@@ -53,11 +53,13 @@ namespace AnagramsKata.Tests
         [TestCase("observe", "verbose")]
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
-            _wordValidator.Setup(x => x.IsValid(expectedAnagram)).Returns(true);
+            ShouldValidateWord(expectedAnagram);
 
             var anagrams = _anagramSearcher.Search(aGivenWord);
 
             anagrams.Should().Contain(expectedAnagram);
         }
+
+        private void ShouldValidateWord(string expectedAnagram) => _wordValidator.Setup(x => x.IsValid(expectedAnagram)).Returns(true);
     }
 }
