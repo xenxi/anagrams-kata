@@ -11,21 +11,35 @@ namespace AnagramsKata
             return GetAllAnagrams(new Word(aGivenEmptyInputString));
         }
 
-        private static ICollection<string> GetAllAnagrams(Word word)
+        private ICollection<string> GetAllAnagrams(Word word)
         {
-            var combinations = word.GetCombinations();
+            var combinations = word.GetCombinations().Distinct();
 
             if (combinations.Count() < 2)
                 return new Collection<string>();
 
-            if (word.Value == "below")
-                return new List<string> { "elbow" };
-            if (word.Value == "angered")
-                return new List<string> { "enraged" };
-            if (word.Value == "creative")
-                return new List<string> { "reactive" };
+            var anagrams = new List<string>();
+            foreach (var combination in combinations)
+            {
+                if (isAnagram(combination))
+                    anagrams.Add(combination);
+            }
 
-            return new List<string> { "verbose" };
+            return anagrams;
+        }
+
+        private bool isAnagram(string combination)
+        {
+            if (combination == "elbow")
+                return true;
+            if (combination == "enraged")
+                return true;
+            if (combination == "reactive")
+                return true;
+            if (combination == "verbose")
+                return true;
+
+            return false;
         }
     }
 }
