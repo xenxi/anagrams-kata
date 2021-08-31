@@ -6,7 +6,7 @@ namespace AnagramsKata
 {
     public class AnagramSearcher
     {
-        private WordValidator wordValidator;
+        private readonly IWordValidator wordValidator;
 
         public AnagramSearcher()
         {

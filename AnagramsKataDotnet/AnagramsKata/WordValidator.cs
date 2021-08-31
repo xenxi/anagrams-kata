@@ -1,6 +1,6 @@
 namespace AnagramsKata
 {
-    public class WordValidator
+    public class WordValidator : IWordValidator
     {
         public bool IsValid(string word)
         {
