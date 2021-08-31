@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace AnagramsKata
@@ -12,12 +13,12 @@ namespace AnagramsKata
 
         public string Value { get; }
 
-        public IEnumerable<string> GetCombinations()
+        public ICollection<string> GetCombinations()
         {
             if (string.IsNullOrWhiteSpace(Value))
-                return Enumerable.Empty<string>();
+                return new Collection<string>();
 
-            return GetCombinations(Value).Where(x => x.Length == Value.Length);
+            return GetCombinations(Value).Where(x => x.Length == Value.Length).ToList();
         }
 
         private static IEnumerable<string> GetCombinations(IEnumerable<char> items)
