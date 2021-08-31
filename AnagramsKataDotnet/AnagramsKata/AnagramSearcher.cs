@@ -13,19 +13,10 @@ namespace AnagramsKata
 
         private ICollection<string> GetAllAnagrams(Word word)
         {
-            var combinations = word.GetCombinations().Distinct();
-
-            if (combinations.Count() < 2)
+            if (word.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            var anagrams = new List<string>();
-            foreach (var combination in combinations)
-            {
-                if (isAnagram(combination))
-                    anagrams.Add(combination);
-            }
-
-            return anagrams;
+            return word.GetCombinations().Distinct().Where(combination => isAnagram(combination)).ToList();
         }
 
         private bool isAnagram(string combination)
