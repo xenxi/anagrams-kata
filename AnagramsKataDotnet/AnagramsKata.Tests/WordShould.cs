@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -31,6 +30,17 @@ namespace AnagramsKata.Tests
 
             var expectedTotalAnagrams = Factorial(aGivenString.Length);
             convinations.Count().Should().Be(expectedTotalAnagrams);
+        }
+
+        [Test]
+        public void return_all_convinations()
+        {
+            var aGivenWord = new Word("abc");
+
+            var convinations = aGivenWord.GetConvinations();
+
+            var expectedConvinations = new List<string> { "abc", "acb", "cba", "bac", "bca", "cab" };
+            convinations.Should().BeEquivalentTo(expectedConvinations);
         }
 
         private int Factorial(int number)
