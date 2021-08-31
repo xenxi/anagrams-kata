@@ -3,7 +3,7 @@
 The instructions are kept short on purpose. The participants should come up with some questions regarding the requirements on their own and the facilitator should act as product owner who can answer them. Key with this kata when doing tdd is to find all the baby steps so you never reach a point where you have to write a huge block of code without having tests to back it up. In addition, readability of the code and performance can be tricky.
 
 ## Instructions
-Write a program that finds all possible anagrams for a submitted input word. A 3 mb wordlist is included as datasource.
+Write a program that finds all possible anagrams for a submitted input word. A 4 mb wordlist is included as datasource.
 Use test driven development (tdd) and pair programming when possible.
 
 ## Easy examples
