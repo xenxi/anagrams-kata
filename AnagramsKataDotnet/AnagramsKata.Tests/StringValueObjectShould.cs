@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace AnagramsKata.Tests
 {
     [TestFixture]
-    public class StringValueObjectShould
+    public class StringValueObjectShould : StringValueObjectTestCase
     {
         [Test]
         public void return_empty_list_of_string_for_empty_input_string()
@@ -21,21 +21,15 @@ namespace AnagramsKata.Tests
         [TestCase("ab")]
         [TestCase("below")]
         [TestCase("angered")]
-        public void return_a_list_with_length_equal_to_the_factorial_of_the_characters_in_the_word(string aGivenString)
+        public void return_a_list_with_length_equal_to_the_variations_without_repetition_of_the_characters_in_the_word(
+            string aGivenString)
         {
             var word = new StringValueObject(aGivenString);
 
             var combinations = word.GetCombinations();
 
-            var expectedTotalAnagrams = VariationsWithoutRepetition(aGivenString);
+            var expectedTotalAnagrams = VariationsWithoutRepetition(word.Value);
             combinations.Count().Should().Be(expectedTotalAnagrams);
-        }
-
-        private int VariationsWithoutRepetition(string aGivenString)
-        {
-            var length = aGivenString.Length - aGivenString.GroupBy(x => x).Count(x => x.Count() == 1);
-            var expectedTotalAnagrams = Factorial(aGivenString.Length) / Factorial(length);
-            return expectedTotalAnagrams;
         }
 
         [Test]
@@ -47,15 +41,6 @@ namespace AnagramsKata.Tests
 
             var expectedCombinations = new List<string> { "abc", "acb", "cba", "bac", "bca", "cab" };
             combinations.Should().BeEquivalentTo(expectedCombinations);
-        }
-
-        private int Factorial(int number)
-        {
-            var factorial = 1;
-            for (var i = 1; i <= number; i++)
-                factorial *= i;
-
-            return factorial;
         }
     }
 }
