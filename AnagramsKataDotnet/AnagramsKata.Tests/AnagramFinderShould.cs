@@ -52,7 +52,7 @@ namespace AnagramsKata.Tests
         {
             var anagrams = _anagramSearcher.Search(aGivenWord);
 
-            anagrams.Should().ContainSingle(expectedAnagram);
+            anagrams.Should().Contain(expectedAnagram);
         }
     }
 }

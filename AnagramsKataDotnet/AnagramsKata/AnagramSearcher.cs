@@ -16,21 +16,12 @@ namespace AnagramsKata
             if (word.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            return word.GetCombinations().Distinct().Where(IsAnagram).ToList();
+            return word.GetCombinations().Where(IsAnagram).ToList();
         }
 
         private bool IsAnagram(string combination)
         {
-            if (combination == "elbow")
-                return true;
-            if (combination == "enraged")
-                return true;
-            if (combination == "reactive")
-                return true;
-            if (combination == "verbose")
-                return true;
-
-            return false;
+            return true;
         }
     }
 }
