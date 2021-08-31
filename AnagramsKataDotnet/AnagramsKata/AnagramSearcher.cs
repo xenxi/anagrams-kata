@@ -16,7 +16,7 @@ namespace AnagramsKata
             if (word.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            return word.GetCombinations().Distinct().Where(combination => IsAnagram(combination)).ToList();
+            return word.GetCombinations().Distinct().Where(IsAnagram).ToList();
         }
 
         private bool IsAnagram(string combination)
