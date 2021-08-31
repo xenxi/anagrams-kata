@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace AnagramsKata
 {
-    public class Word
+    public class StringValueObject
     {
-        public Word(string value)
+        public StringValueObject(string value)
         {
             Value = value;
         }

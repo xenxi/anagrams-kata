@@ -6,12 +6,12 @@ using NUnit.Framework;
 namespace AnagramsKata.Tests
 {
     [TestFixture]
-    public class WordShould
+    public class StringValueObjectShould
     {
         [Test]
         public void return_empty_list_of_string_for_empty_input_string()
         {
-            var emptyWord = new Word(string.Empty);
+            var emptyWord = new StringValueObject(string.Empty);
 
             var combinations = emptyWord.GetCombinations();
 
@@ -23,7 +23,7 @@ namespace AnagramsKata.Tests
         [TestCase("angered")]
         public void return_a_list_with_length_equal_to_the_factorial_of_the_characters_in_the_word(string aGivenString)
         {
-            var word = new Word(aGivenString);
+            var word = new StringValueObject(aGivenString);
 
             var combinations = word.GetCombinations();
 
@@ -41,7 +41,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void return_all_combinations()
         {
-            var aGivenWord = new Word("abc");
+            var aGivenWord = new StringValueObject("abc");
 
             var combinations = aGivenWord.GetCombinations();
 

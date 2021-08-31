@@ -15,15 +15,15 @@ namespace AnagramsKata
 
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
-            return GetAllAnagrams(new Word(aGivenEmptyInputString));
+            return GetAllAnagrams(new StringValueObject(aGivenEmptyInputString));
         }
 
-        private ICollection<string> GetAllAnagrams(Word word)
+        private ICollection<string> GetAllAnagrams(StringValueObject stringValueObject)
         {
-            if (word.GetCombinations().Distinct().Count() < 2)
+            if (stringValueObject.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            return word.GetCombinations().Where(wordValidator.IsValid).ToList();
+            return stringValueObject.GetCombinations().Where(wordValidator.IsValid).ToList();
         }
     }
 }
