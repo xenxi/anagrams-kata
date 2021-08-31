@@ -16,10 +16,10 @@ namespace AnagramsKata
             if (word.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            return word.GetCombinations().Distinct().Where(combination => isAnagram(combination)).ToList();
+            return word.GetCombinations().Distinct().Where(combination => IsAnagram(combination)).ToList();
         }
 
-        private bool isAnagram(string combination)
+        private bool IsAnagram(string combination)
         {
             if (combination == "elbow")
                 return true;
