@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace AnagramsKata
 {
     public class Word
@@ -8,5 +11,10 @@ namespace AnagramsKata
         }
 
         public string Value { get; }
+
+        public IEnumerable<string> GetConvinations(string aGivenEmptyInputString)
+        {
+            return Enumerable.Empty<string>();
+        }
     }
 }

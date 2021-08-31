@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using NUnit.Framework;
 
 namespace AnagramsKata.Tests
@@ -7,13 +6,13 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class AnagramFinderShould
     {
-        private AnagramSearcher _anagramSearcher;
-
         [SetUp]
         public void SetUp()
         {
             _anagramSearcher = new AnagramSearcher();
         }
+
+        private AnagramSearcher _anagramSearcher;
 
         [Test]
         public void return_empty_list_of_words_for_empty_input_string()
