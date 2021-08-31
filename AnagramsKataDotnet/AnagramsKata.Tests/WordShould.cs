@@ -11,10 +11,9 @@ namespace AnagramsKata.Tests
         [Test]
         public void return_empty_list_of_string_for_empty_input_string()
         {
-            var aGivenEmptyInputString = string.Empty;
-            var word = new Word(aGivenEmptyInputString);
+            var emptyWord = new Word(string.Empty);
 
-            var combinations = word.GetCombinations();
+            var combinations = emptyWord.GetCombinations();
 
             combinations.Should().BeEmpty();
         }
