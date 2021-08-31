@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 
 namespace AnagramsKata.Tests
@@ -9,10 +10,12 @@ namespace AnagramsKata.Tests
         [SetUp]
         public void SetUp()
         {
-            _anagramSearcher = new AnagramSearcher();
+            _wordValidator = new Mock<IWordValidator>();
+            _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
         }
 
         private AnagramSearcher _anagramSearcher;
+        private Mock<IWordValidator> _wordValidator;
 
         [Test]
         public void return_empty_list_of_words_for_empty_input_string()
@@ -50,6 +53,8 @@ namespace AnagramsKata.Tests
         [TestCase("observe", "verbose")]
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
+            _wordValidator.Setup(x => x.IsValid(expectedAnagram)).Returns(true);
+
             var anagrams = _anagramSearcher.Search(aGivenWord);
 
             anagrams.Should().Contain(expectedAnagram);

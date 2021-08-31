@@ -8,9 +8,9 @@ namespace AnagramsKata
     {
         private readonly IWordValidator wordValidator;
 
-        public AnagramSearcher()
+        public AnagramSearcher(IWordValidator validator)
         {
-            this.wordValidator = new WordValidator();
+            this.wordValidator = validator;
         }
 
         public ICollection<string> Search(string aGivenEmptyInputString)
