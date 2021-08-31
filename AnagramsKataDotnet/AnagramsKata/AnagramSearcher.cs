@@ -6,6 +6,13 @@ namespace AnagramsKata
 {
     public class AnagramSearcher
     {
+        private WordValidator wordValidator;
+
+        public AnagramSearcher()
+        {
+            this.wordValidator = new WordValidator();
+        }
+
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
             return GetAllAnagrams(new Word(aGivenEmptyInputString));
@@ -16,12 +23,7 @@ namespace AnagramsKata
             if (word.GetCombinations().Distinct().Count() < 2)
                 return new Collection<string>();
 
-            return word.GetCombinations().Where(IsAnagram).ToList();
-        }
-
-        private bool IsAnagram(string combination)
-        {
-            return true;
+            return word.GetCombinations().Where(wordValidator.IsValid).ToList();
         }
     }
 }
