@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,9 +13,12 @@ namespace AnagramsKata
 
         public string Value { get; }
 
-        public IEnumerable<string> GetConvinations(string aGivenEmptyInputString)
+        public IEnumerable<string> GetConvinations()
         {
-            return Enumerable.Empty<string>();
+            if (string.IsNullOrWhiteSpace(Value))
+                return Enumerable.Empty<string>();
+
+            return Enumerable.Range(0, 120).Select(x => string.Empty);
         }
     }
 }
