@@ -8,6 +8,15 @@ namespace AnagramsKata.Tests
     public class FileDictionaryWordValidatorShould
     {
         [Test]
+        public void have_0_words_for_empty_input()
+        {
+            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(string.Empty);
+
+            var totalWords = englishFileDictionaryWordValidator.Count();
+
+            totalWords.Should().Be(0);
+        }
+        [Test]
         public void have_4_words()
         {
             var englishFileDictionaryWordValidator = new FileDictionaryWordValidator("a\nb\nc\nd");

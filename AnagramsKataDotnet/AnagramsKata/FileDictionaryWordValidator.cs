@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AnagramsKata
@@ -14,7 +15,7 @@ namespace AnagramsKata
 
         private Dictionary<int, List<string>> ReadWords(string data)
         {
-            var words = data.Split('\n');
+            var words = data.Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
             return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.ToList());
         }
