@@ -21,7 +21,10 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(data))
                 return new Dictionary<int, List<string>>();
 
-            var words = data.Replace("\r", string.Empty).Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var words = data
+                .Replace("\r", string.Empty)
+                .ToLower()
+                .Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
             return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.ToList());
         }
@@ -49,21 +52,21 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(word))
                 return false;
 
-            var words = SearchWordsWithSameLength(word);
+            var lowerWord = word.ToLower();
 
-            return words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
+            var words = SearchWordsWithSameLength(lowerWord);
+
+            return words.Any(x => x.Equals(lowerWord));
         }
 
         private List<string> SearchWordsWithSameLength(string word)
         {
-            var orderWord = OrderWord(word.ToLower());
-            if( _lastSearch.OrderWord != orderWord)
-            {
-                _lastSearch = (orderWord, _wordDictionary.GetValueOrDefault(word.Length));
-                _lastSearch.Words = _lastSearch.Words
-                    .Where(x => OrderWord(x).Equals(orderWord, StringComparison.CurrentCultureIgnoreCase)).ToList();
-            }
+            var orderWord = OrderWord(word);
+            if (_lastSearch.OrderWord == orderWord) return _lastSearch.Words;
 
+            _lastSearch = (orderWord, _wordDictionary.GetValueOrDefault(word.Length));
+            _lastSearch.Words = _lastSearch.Words
+                .Where(x => OrderWord(x).Equals(orderWord)).ToList();
 
             return _lastSearch.Words;
         }
