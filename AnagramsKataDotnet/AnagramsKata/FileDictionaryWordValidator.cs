@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AnagramsKata
 {
-    public class FileDictionaryWordValidator
+    public class FileDictionaryWordValidator : IWordValidator
     {
         private readonly Dictionary<int, List<string>> _wordDictionary;
 
@@ -40,6 +40,11 @@ namespace AnagramsKata
             var data = File.ReadAllText(filePath);
 
             return new FileDictionaryWordValidator(data);
+        }
+
+        public bool IsValid(string word)
+        {
+            return false;
         }
     }
 }

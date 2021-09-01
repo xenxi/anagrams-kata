@@ -65,5 +65,15 @@ namespace AnagramsKata.Tests
 
             action.Should().Throw<DictionaryNotFound>();
         }
+
+        [Test]
+        public void return_false_if_word_is_empty()
+        {
+            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+
+            var isValidWord = englishFileDictionaryWordValidator.IsValid(string.Empty);
+
+            isValidWord.Should().BeFalse();
+        }
     }
 }
