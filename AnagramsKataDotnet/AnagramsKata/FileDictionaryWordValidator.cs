@@ -30,5 +30,12 @@ namespace AnagramsKata
 
             return _wordDictionary.Values.Sum(x => x.Count);
         }
+
+        public static FileDictionaryWordValidator FromFile(string filePath)
+        {
+            var data = System.IO.File.ReadAllText(filePath);
+
+            return new FileDictionaryWordValidator(data);
+        }
     }
 }

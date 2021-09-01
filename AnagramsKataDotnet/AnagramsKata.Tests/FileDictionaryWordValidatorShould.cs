@@ -44,5 +44,15 @@ namespace AnagramsKata.Tests
 
             totalWords.Should().Be(3);
         }
+
+        [Test]
+        public void load_dictionary_from_file()
+        {
+            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+
+            var totalWords = englishFileDictionaryWordValidator.Count();
+
+            totalWords.Should().Be(370103);
+        }
     }
 }
