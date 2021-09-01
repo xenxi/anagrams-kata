@@ -56,16 +56,21 @@ namespace AnagramsKata
 
         private List<string> SearchWordsWithSameLength(string word)
         {
-            var orderWord = new string(word.ToLower().ToCharArray().OrderBy(x => x).ToArray());
+            var orderWord = OrderWord(word.ToLower());
             if( _lastSearch.OrderWord != orderWord)
             {
                 _lastSearch = (orderWord, _wordDictionary.GetValueOrDefault(word.Length));
                 _lastSearch.Words = _lastSearch.Words
-                    .Where(x => new string(x.ToCharArray().OrderBy(x => x).ToArray()).Equals(orderWord, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                    .Where(x => OrderWord(x).Equals(orderWord, StringComparison.CurrentCultureIgnoreCase)).ToList();
             }
 
 
             return _lastSearch.Words;
+        }
+
+        private static string OrderWord(string word)
+        {
+            return new string(word.ToCharArray().OrderBy(x => x).ToArray());
         }
     }
 }
