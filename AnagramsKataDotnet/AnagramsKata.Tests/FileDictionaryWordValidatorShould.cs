@@ -75,5 +75,14 @@ namespace AnagramsKata.Tests
 
             isValidWord.Should().BeFalse();
         }
+        [Test]
+        public void return_false_if_word_is_null()
+        {
+            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+
+            var isValidWord = englishFileDictionaryWordValidator.IsValid(null);
+
+            isValidWord.Should().BeFalse();
+        }
     }
 }
