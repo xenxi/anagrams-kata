@@ -58,10 +58,11 @@ namespace AnagramsKata.Tests
             totalWords.Should().Be(370103);
         }
 
-        [Test]
-        public void throw_no_found_dictionary_exception()
+        [TestCase("")]
+        [TestCase(null)]
+        public void throw_no_found_dictionary_exception(string aGivenInvalidFilePath)
         {
-            Action action = () => FileDictionaryWordValidator.FromFile("");
+            Action action = () => FileDictionaryWordValidator.FromFile(aGivenInvalidFilePath);
 
             action.Should().Throw<DictionaryNotFound>();
         }
