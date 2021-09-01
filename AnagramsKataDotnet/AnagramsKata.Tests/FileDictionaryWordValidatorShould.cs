@@ -7,6 +7,14 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class FileDictionaryWordValidatorShould
     {
+        private FileDictionaryWordValidator _englishFileDictionaryWordValidator;
+
+        [SetUp]
+        public void Setup()
+        {
+            _englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+        }
+
         [Test]
         public void have_0_words_for_null_input()
         {
@@ -89,9 +97,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void return_false_if_word_do_not_exist_in_the_dictionary()
         {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
-
-            var isValidWord = englishFileDictionaryWordValidator.IsValid("adfasdfasd");
+            var isValidWord = _englishFileDictionaryWordValidator.IsValid("adfasdfasd");
 
             isValidWord.Should().BeFalse();
         }
@@ -100,19 +106,16 @@ namespace AnagramsKata.Tests
         [TestCase("like")]
         public void return_true_if_word_exist_in_the_dictionary(string aGivenValidWord)
         {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
-
-            var isValidWord = englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
+            var isValidWord = _englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
 
             isValidWord.Should().BeTrue();
         }
+
         [TestCase("pOtatoes")]
         [TestCase("LIKE")]
         public void return_true_if_word_exist_in_the_dictionary_ignoring_capital_letters(string aGivenValidWord)
         {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
-
-            var isValidWord = englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
+            var isValidWord = _englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
 
             isValidWord.Should().BeTrue();
         }

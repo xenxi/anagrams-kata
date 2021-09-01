@@ -47,10 +47,7 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(word))
                 return false;
 
-            if (_wordDictionary.TryGetValue(word.Length, out var words))
-                return words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
-
-            return false;
+            return _wordDictionary.TryGetValue(word.Length, out var words) && words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }
