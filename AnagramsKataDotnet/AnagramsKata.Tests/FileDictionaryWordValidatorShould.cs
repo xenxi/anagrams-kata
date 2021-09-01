@@ -102,17 +102,11 @@ namespace AnagramsKata.Tests
             isValidWord.Should().BeFalse();
         }
 
-        [TestCase("potatoes")]
-        [TestCase("like")]
-        public void return_true_if_word_exist_in_the_dictionary(string aGivenValidWord)
-        {
-            var isValidWord = _englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
-
-            isValidWord.Should().BeTrue();
-        }
 
         [TestCase("pOtatoes")]
         [TestCase("LIKE")]
+        [TestCase("potatoes")]
+        [TestCase("like")]
         public void return_true_if_word_exist_in_the_dictionary_ignoring_capital_letters(string aGivenValidWord)
         {
             var isValidWord = _englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
