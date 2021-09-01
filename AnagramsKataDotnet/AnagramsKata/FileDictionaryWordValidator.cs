@@ -48,7 +48,7 @@ namespace AnagramsKata
                 return false;
 
             if (_wordDictionary.TryGetValue(word.Length, out var words))
-                return words.Contains(word);
+                return words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
 
             return false;
         }

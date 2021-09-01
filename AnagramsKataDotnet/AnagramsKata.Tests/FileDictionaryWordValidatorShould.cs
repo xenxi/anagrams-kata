@@ -106,5 +106,15 @@ namespace AnagramsKata.Tests
 
             isValidWord.Should().BeTrue();
         }
+        [TestCase("pOtatoes")]
+        [TestCase("LIKE")]
+        public void return_true_if_word_exist_in_the_dictionary_ignoring_capital_letters(string aGivenValidWord)
+        {
+            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+
+            var isValidWord = englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
+
+            isValidWord.Should().BeTrue();
+        }
     }
 }
