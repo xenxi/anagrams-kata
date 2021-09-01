@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace AnagramsKata
@@ -33,7 +34,10 @@ namespace AnagramsKata
 
         public static FileDictionaryWordValidator FromFile(string filePath)
         {
-            var data = System.IO.File.ReadAllText(filePath);
+            if (!File.Exists(filePath))
+                throw new DictionaryNotFound();
+
+            var data = File.ReadAllText(filePath);
 
             return new FileDictionaryWordValidator(data);
         }

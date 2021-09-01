@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -16,6 +17,7 @@ namespace AnagramsKata.Tests
 
             totalWords.Should().Be(0);
         }
+
         [Test]
         public void have_0_words_for_empty_input()
         {
@@ -25,6 +27,7 @@ namespace AnagramsKata.Tests
 
             totalWords.Should().Be(0);
         }
+
         [Test]
         public void have_4_words()
         {
@@ -53,6 +56,14 @@ namespace AnagramsKata.Tests
             var totalWords = englishFileDictionaryWordValidator.Count();
 
             totalWords.Should().Be(370103);
+        }
+
+        [Test]
+        public void throw_no_found_dictionary_exception()
+        {
+            Action action = () => FileDictionaryWordValidator.FromFile("");
+
+            action.Should().Throw<DictionaryNotFound>();
         }
     }
 }
