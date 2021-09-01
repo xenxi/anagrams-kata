@@ -19,7 +19,7 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(data))
                 return new Dictionary<int, List<string>>();
 
-            var words = data.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var words = data.Replace("\r", string.Empty).Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
             return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.ToList());
         }
@@ -44,8 +44,11 @@ namespace AnagramsKata
 
         public bool IsValid(string word)
         {
-            if (word == "potatoe")
-                return true;
+            if (string.IsNullOrWhiteSpace(word))
+                return false;
+
+            if (_wordDictionary.TryGetValue(word.Length, out var words))
+                return words.Contains(word);
 
             return false;
         }

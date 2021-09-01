@@ -96,12 +96,13 @@ namespace AnagramsKata.Tests
             isValidWord.Should().BeFalse();
         }
 
-        [Test]
-        public void return_true_if_word_exist_in_the_dictionary()
+        [TestCase("potatoes")]
+        [TestCase("like")]
+        public void return_true_if_word_exist_in_the_dictionary(string aGivenValidWord)
         {
             var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
 
-            var isValidWord = englishFileDictionaryWordValidator.IsValid("potatoe");
+            var isValidWord = englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
 
             isValidWord.Should().BeTrue();
         }
