@@ -8,10 +8,12 @@ namespace AnagramsKata
     public class FileDictionaryWordValidator : IWordValidator
     {
         private readonly Dictionary<int, List<string>> _wordDictionary;
+        private (string OrderWord, List<string> Words) _lastSearch;
 
         public FileDictionaryWordValidator(string data)
         {
             _wordDictionary = ReadWords(data);
+            _lastSearch = (string.Empty, new List<string>());
         }
 
         private Dictionary<int, List<string>> ReadWords(string data)
@@ -47,7 +49,23 @@ namespace AnagramsKata
             if (string.IsNullOrWhiteSpace(word))
                 return false;
 
-            return _wordDictionary.TryGetValue(word.Length, out var words) && words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
+            var words = SearchWordsWithSameLength(word);
+
+            return words.Any(x => x.Equals(word, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        private List<string> SearchWordsWithSameLength(string word)
+        {
+            var orderWord = new string(word.ToLower().ToCharArray().OrderBy(x => x).ToArray());
+            if( _lastSearch.OrderWord != orderWord)
+            {
+                _lastSearch = (orderWord, _wordDictionary.GetValueOrDefault(word.Length));
+                _lastSearch.Words = _lastSearch.Words
+                    .Where(x => new string(x.ToCharArray().OrderBy(x => x).ToArray()).Equals(orderWord, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+
+
+            return _lastSearch.Words;
         }
     }
 }
