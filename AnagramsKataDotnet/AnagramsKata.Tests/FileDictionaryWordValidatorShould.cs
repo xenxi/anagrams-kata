@@ -7,9 +7,9 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class FileDictionaryWordValidatorShould
     {
-        private FileDictionaryWordValidator _englishFileDictionaryWordValidator;
+        private static FileDictionaryWordValidator _englishFileDictionaryWordValidator;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             _englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
