@@ -54,5 +54,7 @@ namespace AnagramsKata.Tests
 
             anagrams.Should().Contain(expectedAnagram);
         }
+        //ignore case
+        //ignore current word
     }
 }

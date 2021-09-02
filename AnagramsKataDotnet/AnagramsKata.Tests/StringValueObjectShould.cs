@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AnagramsKata.Tests
 {
@@ -29,7 +28,7 @@ namespace AnagramsKata.Tests
             var combinations = word.GetCombinations();
 
             var expectedTotalAnagrams = VariationsWithoutRepetition(word.Value);
-            combinations.Count().Should().Be(expectedTotalAnagrams);
+            combinations.Count.Should().Be(expectedTotalAnagrams);
         }
 
         [Test]

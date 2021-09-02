@@ -8,14 +8,8 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class AnagramFinderShould
     {
-        [SetUp]
-        public void SetUp()
-        {
-            _wordValidator = new Mock<IWordValidator>();
-            _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
-        }
-
         private AnagramSearcher _anagramSearcher;
+
         private Mock<IWordValidator> _wordValidator;
 
         [Test]
@@ -54,7 +48,6 @@ namespace AnagramsKata.Tests
         [TestCase("observe", "verbose")]
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
-            ShouldValidateWord(expectedAnagram);
             ShouldSearchWord(expectedAnagram);
 
             var anagrams = _anagramSearcher.Search(aGivenWord);
@@ -62,7 +55,12 @@ namespace AnagramsKata.Tests
             anagrams.Should().Contain(expectedAnagram);
         }
 
-        private void ShouldValidateWord(string expectedAnagram) => _wordValidator.Setup(x => x.IsValid(expectedAnagram)).Returns(true);
-        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { new Word(expectedAnagram)});
+        [SetUp]
+        public void SetUp()
+        {
+            _wordValidator = new Mock<IWordValidator>();
+            _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
+        }
+        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { new Word(expectedAnagram) });
     }
 }

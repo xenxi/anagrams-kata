@@ -1,6 +1,7 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace AnagramsKata.Tests
 {
@@ -16,15 +17,19 @@ namespace AnagramsKata.Tests
         }
 
         [Test]
-        public void have_0_words_for_null_input()
+        public void return_empty_list_when_length_is_zero()
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(null);
+            var totalWords = _englishFileDictionaryWordValidator.SearchWordsByLength(0);
 
-            var totalWords = englishFileDictionaryWordValidator.Count();
-
-            totalWords.Should().Be(0);
+            totalWords.Should().BeEmpty();
         }
+        [Test]
+        public void return_empty_list_when_length_is_less_than_zero()
+        {
+            var totalWords = _englishFileDictionaryWordValidator.SearchWordsByLength(-1);
 
+            totalWords.Should().BeEmpty();
+        }
         [Test]
         public void have_0_words_for_empty_input()
         {
@@ -58,9 +63,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void load_dictionary_from_file()
         {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
-
-            var totalWords = englishFileDictionaryWordValidator.Count();
+            var totalWords = _englishFileDictionaryWordValidator.Count();
 
             totalWords.Should().Be(370103);
         }
@@ -75,43 +78,32 @@ namespace AnagramsKata.Tests
         }
 
         [Test]
-        public void return_false_if_word_is_empty()
+        [TestCase("pOtatoes")]
+        [TestCase("LIKE")]
+        [TestCase("potatoes")]
+        [TestCase("like")]
+        public void return_empty_list_when_not_fount_words_with_same_length(string aGivenDictionaryData)
         {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(aGivenDictionaryData);
 
-            var isValidWord = englishFileDictionaryWordValidator.IsValid(string.Empty);
+            var words = englishFileDictionaryWordValidator.SearchWordsByLength(aGivenDictionaryData.Length + 1);
 
-            isValidWord.Should().BeFalse();
+            words.Should().BeEmpty();
         }
 
-        [Test]
-        public void return_false_if_word_is_null()
-        {
-            var englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
-
-            var isValidWord = englishFileDictionaryWordValidator.IsValid(null);
-
-            isValidWord.Should().BeFalse();
-        }
-
-        [Test]
-        public void return_false_if_word_do_not_exist_in_the_dictionary()
-        {
-            var isValidWord = _englishFileDictionaryWordValidator.IsValid("adfasdfasd");
-
-            isValidWord.Should().BeFalse();
-        }
-
+    
 
         [TestCase("pOtatoes")]
         [TestCase("LIKE")]
         [TestCase("potatoes")]
         [TestCase("like")]
-        public void return_true_if_word_exist_in_the_dictionary_ignoring_capital_letters(string aGivenValidWord)
+        public void return_a_list_with_word(string aGivenDictionaryData)
         {
-            var isValidWord = _englishFileDictionaryWordValidator.IsValid(aGivenValidWord);
+            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(aGivenDictionaryData);
 
-            isValidWord.Should().BeTrue();
+            var words = englishFileDictionaryWordValidator.SearchWordsByLength(aGivenDictionaryData.Length);
+
+            words.Should().OnlyContain((w) => w == aGivenDictionaryData);
         }
     }
 }

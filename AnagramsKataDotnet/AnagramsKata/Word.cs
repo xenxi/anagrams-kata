@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AnagramsKata
 {
@@ -29,6 +30,24 @@ namespace AnagramsKata
         private static string OrderCharacters(string word)
         {
             return new string(word.ToCharArray().OrderBy(x => x).ToArray());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Word word &&
+                   Value == word.Value;
+        }
+
+        public static implicit operator Word(string val) => new Word(val);
+
+        public static bool operator ==(Word left, Word right)
+        {
+            return EqualityComparer<Word>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Word left, Word right)
+        {
+            return !(left == right);
         }
     }
 }
