@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace AnagramsKata.Tests
 {
@@ -54,6 +55,7 @@ namespace AnagramsKata.Tests
         public void return_one_anagram(string aGivenWord, string expectedAnagram)
         {
             ShouldValidateWord(expectedAnagram);
+            ShouldSearchWord(expectedAnagram);
 
             var anagrams = _anagramSearcher.Search(aGivenWord);
 
@@ -61,5 +63,6 @@ namespace AnagramsKata.Tests
         }
 
         private void ShouldValidateWord(string expectedAnagram) => _wordValidator.Setup(x => x.IsValid(expectedAnagram)).Returns(true);
+        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { new Word(expectedAnagram)});
     }
 }

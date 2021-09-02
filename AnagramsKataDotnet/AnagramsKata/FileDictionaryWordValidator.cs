@@ -8,11 +8,13 @@ namespace AnagramsKata
     public class FileDictionaryWordValidator : IWordValidator
     {
         private readonly Dictionary<int, List<string>> _wordDictionary;
+        private readonly Dictionary<int, List<Word>> _wordValueObjectsDictionary;
         private (string OrderWord, List<string> Words) _lastSearch;
 
         public FileDictionaryWordValidator(string data)
         {
             _wordDictionary = ReadWords(data);
+            _wordValueObjectsDictionary = _wordDictionary.ToDictionary(x => x.Key, x => x.Value.Select(y => new Word(y)).ToList());
             _lastSearch = (string.Empty, new List<string>());
         }
 
@@ -74,6 +76,11 @@ namespace AnagramsKata
         private static string OrderWord(string word)
         {
             return new string(word.ToCharArray().OrderBy(x => x).ToArray());
+        }
+
+        public IEnumerable<Word> SearchWordsByLength(int length)
+        {
+            return _wordValueObjectsDictionary.GetValueOrDefault(length) ?? new List<Word>();
         }
     }
 }
