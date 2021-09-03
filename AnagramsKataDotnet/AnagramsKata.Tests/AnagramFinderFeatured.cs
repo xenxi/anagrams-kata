@@ -6,13 +6,13 @@ namespace AnagramsKata.Tests
     [TestFixture]
     public class AnagramFinderFeatured
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _anagramSearcher = new AnagramSearcher(FileWordDictionary.FromFile("./Sources/en_words.txt"));
         }
 
-        private AnagramSearcher _anagramSearcher;
+        private static AnagramSearcher _anagramSearcher;
 
         [Test]
         public void return_empty_list_of_words_for_empty_input_string()
