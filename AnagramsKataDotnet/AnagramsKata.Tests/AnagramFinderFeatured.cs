@@ -54,7 +54,29 @@ namespace AnagramsKata.Tests
 
             anagrams.Should().Contain(expectedAnagram);
         }
-        //ignore case
-        //ignore current word
+
+        [Test]
+        [TestCase("BELOW", "elbow")]
+        [TestCase("ANGERED", "enraged")]
+        [TestCase("CREATIVE", "reactive")]
+        [TestCase("OBSERVE", "verbose")]
+        public void found_anagram_ignore_case(string aGivenWord, string expectedAnagram)
+        {
+            var anagrams = _anagramSearcher.Search(aGivenWord);
+
+            anagrams.Should().Contain(expectedAnagram);
+        }
+
+        [Test]
+        [TestCase("below")]
+        [TestCase("angered")]
+        [TestCase("creative")]
+        [TestCase("observe")]
+        public void no_include_current_word_as_an_anagram(string aGivenWord)
+        {
+            var anagrams = _anagramSearcher.Search(aGivenWord);
+
+            anagrams.Should().NotContain(aGivenWord);
+        }
     }
 }

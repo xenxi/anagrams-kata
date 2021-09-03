@@ -19,7 +19,7 @@ namespace AnagramsKata
 
         public bool IsAnagramOf(Word word)
         {
-            return _anagramKey == word._anagramKey;
+            return Length == word.Length && _anagramKey == word._anagramKey && Value != word.Value;
         }
 
         private static string NormalizeString(string value)

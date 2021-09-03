@@ -55,12 +55,40 @@ namespace AnagramsKata.Tests
             anagrams.Should().Contain(expectedAnagram);
         }
 
+        [Test]
+        [TestCase("below", "elbow")]
+        [TestCase("angered", "enraged")]
+        [TestCase("creative", "reactive")]
+        [TestCase("observe", "verbose")]
+        public void no_include_current_word_as_an_anagram(string aGivenWord, string expectedWordWithSameLength)
+        {
+            ShouldSearchWord(expectedWordWithSameLength);
+
+            var anagrams = _anagramSearcher.Search(aGivenWord);
+
+            anagrams.Should().NotContain(aGivenWord);
+        }
+
+        [Test]
+        [TestCase("BELOW", "elbow")]
+        [TestCase("ANGERED", "enraged")]
+        [TestCase("CREATIVE", "reactive")]
+        [TestCase("OBSERVE", "verbose")]
+        public void found_anagram_ignore_case(string aGivenWord, string expectedAnagram)
+        {
+            ShouldSearchWord(expectedAnagram);
+
+            var anagrams = _anagramSearcher.Search(aGivenWord);
+
+            anagrams.Should().Contain(expectedAnagram);
+        }
+
         [SetUp]
         public void SetUp()
         {
             _wordValidator = new Mock<IWordValidator>();
             _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
         }
-        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { expectedAnagram });
+        private void ShouldSearchWord(string expectedWordWithSameLength) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedWordWithSameLength.Length)).Returns(new List<Word> { expectedWordWithSameLength });
     }
 }
