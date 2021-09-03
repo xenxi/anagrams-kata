@@ -9,7 +9,7 @@ namespace AnagramsKata.Tests
         [SetUp]
         public void SetUp()
         {
-            _anagramSearcher = new AnagramSearcher(FileDictionaryWordValidator.FromFile("./Sources/en_words.txt"));
+            _anagramSearcher = new AnagramSearcher(FileWordDictionary.FromFile("./Sources/en_words.txt"));
         }
 
         private AnagramSearcher _anagramSearcher;

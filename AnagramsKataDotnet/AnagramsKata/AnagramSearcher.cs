@@ -1,33 +1,29 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace AnagramsKata
 {
     public class AnagramSearcher
     {
-        private readonly IWordValidator wordValidator;
+        private readonly IWordDictionary _dictionary;
 
-        public AnagramSearcher(IWordValidator validator)
+        public AnagramSearcher(IWordDictionary dictionary)
         {
-            this.wordValidator = validator;
+            _dictionary = dictionary;
         }
 
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
-            return GetAllAnagrams(aGivenEmptyInputString);
+            return GetAllAnagrams(aGivenEmptyInputString).AsString();
         }
 
-        private ICollection<string> GetAllAnagrams(Word word)
+        private Words GetAllAnagrams(Word word)
         {
             if (word.Length < 2)
-                return new Collection<string>();
+                return Words.Empty();
 
-            IEnumerable<Word> wordsWithSameLegth = wordValidator.SearchWordsByLength(word.Length);
+            var wordsWithSameLegth = _dictionary.SearchWordsByLength(word.Length);
 
-            var anagrams = wordsWithSameLegth.Where(word.IsAnagramOf);
-
-            return anagrams.Select(x => x.Value).ToList();
+            return wordsWithSameLegth.GetAnagrams(word);
         }
     }
 }

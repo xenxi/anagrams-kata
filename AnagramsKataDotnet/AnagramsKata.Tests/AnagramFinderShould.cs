@@ -10,7 +10,7 @@ namespace AnagramsKata.Tests
     {
         private AnagramSearcher _anagramSearcher;
 
-        private Mock<IWordValidator> _wordValidator;
+        private Mock<IWordDictionary> _wordDictionary;
 
         [Test]
         public void return_empty_list_of_words_for_empty_input_string()
@@ -86,9 +86,11 @@ namespace AnagramsKata.Tests
         [SetUp]
         public void SetUp()
         {
-            _wordValidator = new Mock<IWordValidator>();
-            _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
+            _wordDictionary = new Mock<IWordDictionary>();
+            _anagramSearcher = new AnagramSearcher(_wordDictionary.Object);
         }
-        private void ShouldSearchWord(string expectedWordWithSameLength) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedWordWithSameLength.Length)).Returns(new List<Word> { expectedWordWithSameLength });
+        private void ShouldSearchWord(string expectedWordWithSameLength) 
+            => _wordDictionary.Setup(x => x.SearchWordsByLength(expectedWordWithSameLength.Length))
+                .Returns(new Words(new List<Word> { expectedWordWithSameLength }));
     }
 }

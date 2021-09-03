@@ -6,14 +6,14 @@ using System.Linq;
 namespace AnagramsKata.Tests
 {
     [TestFixture]
-    public class FileDictionaryWordValidatorShould
+    public class FileWordDictionaryShould
     {
-        private static FileDictionaryWordValidator _englishFileDictionaryWordValidator;
+        private static FileWordDictionary _englishFileDictionaryWordValidator;
 
         [OneTimeSetUp]
         public void Setup()
         {
-            _englishFileDictionaryWordValidator = FileDictionaryWordValidator.FromFile("./Sources/en_words.txt");
+            _englishFileDictionaryWordValidator = FileWordDictionary.FromFile("./Sources/en_words.txt");
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void have_0_words_for_empty_input()
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(string.Empty);
+            var englishFileDictionaryWordValidator = new FileWordDictionary(string.Empty);
 
             var totalWords = englishFileDictionaryWordValidator.Count();
 
@@ -43,7 +43,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void have_4_words()
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator("a\nb\nc\nd");
+            var englishFileDictionaryWordValidator = new FileWordDictionary("a\nb\nc\nd");
 
             var totalWords = englishFileDictionaryWordValidator.Count();
 
@@ -53,7 +53,7 @@ namespace AnagramsKata.Tests
         [Test]
         public void have_3_words()
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator("a\nb\nc");
+            var englishFileDictionaryWordValidator = new FileWordDictionary("a\nb\nc");
 
             var totalWords = englishFileDictionaryWordValidator.Count();
 
@@ -72,7 +72,7 @@ namespace AnagramsKata.Tests
         [TestCase(null)]
         public void throw_no_found_dictionary_exception(string aGivenInvalidFilePath)
         {
-            Action action = () => FileDictionaryWordValidator.FromFile(aGivenInvalidFilePath);
+            Action action = () => FileWordDictionary.FromFile(aGivenInvalidFilePath);
 
             action.Should().Throw<DictionaryNotFound>();
         }
@@ -84,7 +84,7 @@ namespace AnagramsKata.Tests
         [TestCase("like")]
         public void return_empty_list_when_not_fount_words_with_same_length(string aGivenDictionaryData)
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(aGivenDictionaryData);
+            var englishFileDictionaryWordValidator = new FileWordDictionary(aGivenDictionaryData);
 
             var words = englishFileDictionaryWordValidator.SearchWordsByLength(aGivenDictionaryData.Length + 1);
 
@@ -99,7 +99,7 @@ namespace AnagramsKata.Tests
         [TestCase("like")]
         public void return_a_list_with_word(string aGivenDictionaryData)
         {
-            var englishFileDictionaryWordValidator = new FileDictionaryWordValidator(aGivenDictionaryData);
+            var englishFileDictionaryWordValidator = new FileWordDictionary(aGivenDictionaryData);
 
             var words = englishFileDictionaryWordValidator.SearchWordsByLength(aGivenDictionaryData.Length);
 

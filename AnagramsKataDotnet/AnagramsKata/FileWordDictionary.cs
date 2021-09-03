@@ -5,23 +5,23 @@ using System.Linq;
 
 namespace AnagramsKata
 {
-    public class FileDictionaryWordValidator : IWordValidator
+    public class FileWordDictionary : IWordDictionary
     {
         private readonly Dictionary<int, List<Word>> _wordValueObjectsDictionary;
 
-        public FileDictionaryWordValidator(string data)
+        public FileWordDictionary(string data)
         {
             _wordValueObjectsDictionary = ReadWords(data);
         }
 
-        public static FileDictionaryWordValidator FromFile(string filePath)
+        public static FileWordDictionary FromFile(string filePath)
         {
             if (!File.Exists(filePath))
                 throw new DictionaryNotFound();
 
             var data = File.ReadAllText(filePath);
 
-            return new FileDictionaryWordValidator(data);
+            return new FileWordDictionary(data);
         }
 
         public int Count()
@@ -46,6 +46,13 @@ namespace AnagramsKata
                 .Select(x => new Word(x));
 
             return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.ToList());
+        }
+
+        Words IWordDictionary.SearchWordsByLength(int length)
+        {
+            var words = _wordValueObjectsDictionary.GetValueOrDefault(length) ?? new List<Word>();
+
+            return new Words(words);
         }
     }
 }
