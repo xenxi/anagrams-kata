@@ -24,9 +24,12 @@ namespace AnagramsKata
 
         private static string NormalizeString(string value)
         {
-            value ??= string.Empty;
-            return value.ToLower();
+            if (value == null)
+                return string.Empty;
+
+            return value.Replace("\r", string.Empty).ToLower();
         }
+
         private static string OrderCharacters(string word)
         {
             return new string(word.ToCharArray().OrderBy(x => x).ToArray());

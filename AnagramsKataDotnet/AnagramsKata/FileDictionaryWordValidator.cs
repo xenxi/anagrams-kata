@@ -42,11 +42,10 @@ namespace AnagramsKata
                 return new Dictionary<int, List<Word>>();
 
             var words = data
-                .Replace("\r", string.Empty)
-                .ToLower()
-                .Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                .Split('\n', StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => new Word(x));
 
-            return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.Select(y => new Word(y)).ToList());
+            return words.GroupBy(x => x.Length).ToDictionary(x => x.Key, x => x.ToList());
         }
     }
 }
