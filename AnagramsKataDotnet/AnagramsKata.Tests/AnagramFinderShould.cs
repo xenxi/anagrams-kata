@@ -61,6 +61,6 @@ namespace AnagramsKata.Tests
             _wordValidator = new Mock<IWordValidator>();
             _anagramSearcher = new AnagramSearcher(_wordValidator.Object);
         }
-        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { new Word(expectedAnagram) });
+        private void ShouldSearchWord(string expectedAnagram) => _wordValidator.Setup(x => x.SearchWordsByLength(expectedAnagram.Length)).Returns(new List<Word> { expectedAnagram });
     }
 }

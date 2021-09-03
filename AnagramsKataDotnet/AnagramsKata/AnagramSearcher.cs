@@ -15,7 +15,7 @@ namespace AnagramsKata
 
         public ICollection<string> Search(string aGivenEmptyInputString)
         {
-            return GetAllAnagrams(new Word(aGivenEmptyInputString));
+            return GetAllAnagrams(aGivenEmptyInputString);
         }
 
         private ICollection<string> GetAllAnagrams(Word word)
