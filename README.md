@@ -1,5 +1,15 @@
 # Anagrams Kata
 
+[![Build](https://github.com/xenxi/anagrams-kata/actions/workflows/build.yml/badge.svg)](https://github.com/xenxi/anagrams-kata/actions/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=alert_status)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=bugs)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=code_smells)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=coverage)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=ncloc)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=xenxi_anagrams-kata&metric=sqale_index)](https://sonarcloud.io/dashboard?id=xenxi_anagrams-kata)
+
 The instructions are kept short on purpose. The participants should come up with some questions regarding the requirements on their own and the facilitator should act as product owner who can answer them. Key with this kata when doing tdd is to find all the baby steps so you never reach a point where you have to write a huge block of code without having tests to back it up. In addition, readability of the code and performance can be tricky.
 
 ## Instructions
